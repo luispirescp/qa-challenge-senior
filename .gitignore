@@ -147,3 +147,24 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+# Playwright
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+
+# JMeter
+performance/reports/
+performance/*.jtl
+jmeter.log
+
+# Allure (se usar depois)
+allure-results/
+allure-report/
+
+# Desafio — arquivos gerados pelo script de e-mails
+email-validator/validacao_emails.csv
+
+# Sistema operacional
+.DS_Store
+Thumbs.db

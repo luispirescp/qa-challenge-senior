@@ -1,0 +1,27 @@
+{
+  "name": "qa-challenge-senior",
+  "version": "1.0.0",
+  "description": "Desafio Técnico — Analista de QA Sênior (API, E2E, Performance, BDD)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luispirescp/qa-challenge-senior.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/luispirescp/qa-challenge-senior/issues"
+  },
+  "homepage": "https://github.com/luispirescp/qa-challenge-senior#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.0"
+  }
+}
