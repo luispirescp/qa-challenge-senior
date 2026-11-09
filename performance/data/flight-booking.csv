@@ -1,0 +1,4 @@
+fromPort,toPort,inputName,address,city,state,zipCode,cardType,creditCardNumber,creditCardMonth,creditCardYear,nameOnCard
+Boston,London,QA Load User,1 Test Street,Boston,MA,02108,visa,4111111111111111,12,2030,QA Load User
+Paris,Rome,QA Load User,2 Test Street,Paris,IDF,75001,visa,4111111111111111,12,2030,QA Load User
+Portland,Berlin,QA Load User,3 Test Street,Portland,OR,97035,visa,4111111111111111,12,2030,QA Load User

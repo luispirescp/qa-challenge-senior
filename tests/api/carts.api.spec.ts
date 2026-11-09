@@ -105,6 +105,20 @@ test.describe('Carts API', () => {
     expect(typeof (await response.json()).message).toBe('string');
   });
 
+  test('returns 404 when the cart ID is not numeric', async ({ request }) => {
+    const response = await request.get('/carts/not-a-number');
+
+    expect(response.status()).toBe(404);
+    expect(typeof (await response.json()).message).toBe('string');
+  });
+
+  test('rejects a cart payload without required data', async ({ request }) => {
+    const response = await request.post('/carts/add', { data: {} });
+
+    expect(response.status()).toBe(400);
+    expect((await response.text()).length).toBeGreaterThan(0);
+  });
+
   test('deletes a cart and reports the simulated deletion state', async ({ request }) => {
     const response = await request.delete('/carts/1');
 

@@ -42,4 +42,23 @@ test.describe('Products API', () => {
     expect(response.status()).toBe(404);
     expect(typeof (await response.json()).message).toBe('string');
   });
+
+  test('returns 404 when the product ID is not numeric', async ({ request }) => {
+    const response = await request.get('/products/not-a-number');
+
+    expect(response.status()).toBe(404);
+    expect(typeof (await response.json()).message).toBe('string');
+  });
+
+  test('documents that simulated product creation does not validate required or numeric fields', async ({ request }) => {
+    const emptyResponse = await request.post('/products/add', { data: {} });
+    expect(emptyResponse.status()).toBe(201);
+    expect(Number.isInteger((await emptyResponse.json()).id)).toBe(true);
+
+    const invalidResponse = await request.post('/products/add', {
+      data: { title: '', price: -1 },
+    });
+    expect(invalidResponse.status()).toBe(201);
+    expect(await invalidResponse.json()).toMatchObject({ title: '', price: -1 });
+  });
 });
