@@ -1,0 +1,6 @@
+qa@example.com
+userexample.com
+user@
+user@example
+first last@example.com
+invalid<>@example.com

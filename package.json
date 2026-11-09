@@ -7,7 +7,11 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "test:api": "playwright test tests/api",
+    "test:e2e": "playwright test tests/e2e",
+    "test:email": "node --test email-validator/validator.test.js",
+    "email:validate": "node email-validator/cli.js"
   },
   "repository": {
     "type": "git",

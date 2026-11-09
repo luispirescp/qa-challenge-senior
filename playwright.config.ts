@@ -1,5 +1,15 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './tests', // Procura recursivamente por arquivos de teste dentro de tests/
+  testDir: './tests',
+  outputDir: './test-results/playwright',
+  reporter: [
+    ['list'],
+    ['html', { outputFolder: 'playwright-report', open: 'never' }],
+  ],
+  use: {
+    baseURL: 'https://dummyjson.com',
+    testIdAttribute: 'data-test',
+    trace: 'retain-on-failure',
+  },
 });
