@@ -36,6 +36,21 @@ test.describe('Products API', () => {
     expect(typeof (await getResponse.json()).message).toBe('string');
   });
 
+  test('retrieves a catalog product and validates its response structure', async ({ request }) => {
+    const response = await request.get('/products/1');
+
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toContain('application/json');
+    const product = await response.json();
+    expect(product).toMatchObject({
+      id: 1,
+      title: expect.any(String),
+      price: expect.any(Number),
+      category: expect.any(String),
+      stock: expect.any(Number),
+    });
+  });
+
   test('returns 404 for a product that does not exist', async ({ request }) => {
     const response = await request.get('/products/999999');
 
