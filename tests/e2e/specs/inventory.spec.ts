@@ -1,8 +1,8 @@
 import { expect, test } from '../fixtures/authenticated.fixture';
 import { InventoryPage } from '../pages/InventoryPage';
 
-test.describe('Inventory', () => {
-  test('shows six products with names and prices', async ({ authenticatedPage }) => {
+test.describe('Estoque', () => {
+  test('exibe seis produtos com nomes e preços', async ({ authenticatedPage }) => {
     const inventory = new InventoryPage(authenticatedPage);
 
     await expect(inventory.title).toHaveText('Products');
@@ -11,7 +11,7 @@ test.describe('Inventory', () => {
       .toHaveText('$29.99');
   });
 
-  test('adds multiple products and updates the cart counter', async ({ authenticatedPage }) => {
+  test('adiciona vários produtos e atualiza o contador do carrinho', async ({ authenticatedPage }) => {
     const inventory = new InventoryPage(authenticatedPage);
 
     await inventory.addProduct('sauce-labs-backpack');

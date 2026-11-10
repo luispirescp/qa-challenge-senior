@@ -3,8 +3,8 @@ import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
 import { InventoryPage } from '../pages/InventoryPage';
 
-test.describe('Checkout', () => {
-  test('reports each required personal field', async ({ authenticatedPage }) => {
+test.describe('Finalização da compra', () => {
+  test('informa a ausência de cada campo pessoal obrigatório', async ({ authenticatedPage }) => {
     const inventory = new InventoryPage(authenticatedPage);
     await inventory.addProduct('sauce-labs-backpack');
     await inventory.openCart();
@@ -23,7 +23,7 @@ test.describe('Checkout', () => {
     await expect(checkout.errorMessage).toHaveText('Error: Postal Code is required');
   });
 
-  test('reviews totals and completes an order', async ({ authenticatedPage }) => {
+  test('confere os totais e conclui um pedido', async ({ authenticatedPage }) => {
     const inventory = new InventoryPage(authenticatedPage);
     await inventory.addProduct('sauce-labs-backpack');
     await inventory.addProduct('sauce-labs-bike-light');

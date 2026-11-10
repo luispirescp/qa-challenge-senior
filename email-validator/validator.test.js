@@ -6,11 +6,11 @@ const test = require('node:test');
 const { formatCsv, writeCsv } = require('./csv-writer');
 const { validateEmail, validateEmailSyntax, validateEmails } = require('./validator');
 
-test('accepts a syntactically valid email', () => {
+test('aceita um e-mail sintaticamente válido', () => {
   assert.equal(validateEmailSyntax('qa@example.com').status, 'válido');
 });
 
-test('explains common syntax failures', () => {
+test('explica erros comuns de sintaxe', () => {
   assert.match(validateEmailSyntax('userexample.com').motivo, /@/);
   assert.match(validateEmailSyntax('user@').motivo, /ausente/);
   assert.match(validateEmailSyntax('user@example').motivo, /extensão/);
@@ -18,13 +18,13 @@ test('explains common syntax failures', () => {
   assert.match(validateEmailSyntax('invalid<>@example.com').motivo, /inválido/);
 });
 
-test('validates multiple addresses and an empty list', async () => {
+test('valida vários endereços e uma lista vazia', async () => {
   const results = await validateEmails(['ok@example.com', 'broken-address']);
   assert.deepEqual(results.map((result) => result.status), ['válido', 'inválido']);
   assert.deepEqual(await validateEmails([]), []);
 });
 
-test('checks MX records only when requested', async () => {
+test('consulta registros MX somente quando solicitado', async () => {
   const result = await validateEmail('qa@example.com', {
     checkDns: true,
     mxResolver: async (domain) => {
@@ -36,7 +36,7 @@ test('checks MX records only when requested', async () => {
   assert.match(result.motivo, /MX/);
 });
 
-test('marks unavailable DNS as not verified without failing validation', async () => {
+test('marca DNS indisponível como não verificado sem interromper a validação', async () => {
   const unavailableResolver = async () => {
     const error = new Error('DNS unavailable');
     error.code = 'ECONNREFUSED';
@@ -51,14 +51,14 @@ test('marks unavailable DNS as not verified without failing validation', async (
   assert.match(result.motivo, /DNS/);
 });
 
-test('encodes a UTF-8 CSV with escaped fields and the expected header', () => {
+test('gera um CSV UTF-8 com campos escapados e o cabeçalho esperado', () => {
   const csv = formatCsv([{ email: 'a,b@example.com', status: 'inválido', motivo: 'motivo "especial"' }]);
 
   assert.ok(csv.startsWith('\uFEFF"email","status","motivo"'));
   assert.match(csv, /"a,b@example\.com","inválido","motivo ""especial"""/);
 });
 
-test('writes the CSV and reports output errors', async () => {
+test('grava o CSV e informa erros de saída', async () => {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'email-validator-'));
   const output = path.join(directory, 'emails.csv');
   try {

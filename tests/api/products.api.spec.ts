@@ -1,8 +1,8 @@
 import { randomUUID } from 'node:crypto';
 import { expect, test } from '@playwright/test';
 
-test.describe('Products API', () => {
-  test('creates two distinct products and returns their generated IDs', async ({ request }) => {
+test.describe('API de produtos', () => {
+  test('cria dois produtos distintos e retorna os IDs gerados', async ({ request }) => {
     const products = [
       { title: `QA notebook ${randomUUID()}`, price: 749.5 },
       { title: `QA headset ${randomUUID()}`, price: 89.9 },
@@ -23,7 +23,7 @@ test.describe('Products API', () => {
     expect(createdProducts[0].title).not.toBe(createdProducts[1].title);
   });
 
-  test('does not persist a product created through the simulated write endpoint', async ({ request }) => {
+  test('não persiste um produto criado pelo endpoint de escrita simulado', async ({ request }) => {
     const createResponse = await request.post('/products/add', {
       data: { title: `QA transient ${randomUUID()}`, price: 25.75 },
     });
@@ -36,7 +36,7 @@ test.describe('Products API', () => {
     expect(typeof (await getResponse.json()).message).toBe('string');
   });
 
-  test('retrieves a catalog product and validates its response structure', async ({ request }) => {
+  test('consulta um produto do catálogo e valida a estrutura da resposta', async ({ request }) => {
     const response = await request.get('/products/1');
 
     expect(response.status()).toBe(200);
@@ -51,21 +51,21 @@ test.describe('Products API', () => {
     });
   });
 
-  test('returns 404 for a product that does not exist', async ({ request }) => {
+  test('retorna 404 para um produto inexistente', async ({ request }) => {
     const response = await request.get('/products/999999');
 
     expect(response.status()).toBe(404);
     expect(typeof (await response.json()).message).toBe('string');
   });
 
-  test('returns 404 when the product ID is not numeric', async ({ request }) => {
+  test('retorna 404 quando o ID do produto não é numérico', async ({ request }) => {
     const response = await request.get('/products/not-a-number');
 
     expect(response.status()).toBe(404);
     expect(typeof (await response.json()).message).toBe('string');
   });
 
-  test('documents that simulated product creation does not validate required or numeric fields', async ({ request }) => {
+  test('registra que a criação simulada não valida campos obrigatórios ou numéricos', async ({ request }) => {
     const emptyResponse = await request.post('/products/add', { data: {} });
     expect(emptyResponse.status()).toBe(201);
     expect(Number.isInteger((await emptyResponse.json()).id)).toBe(true);

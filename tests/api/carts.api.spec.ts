@@ -3,8 +3,8 @@ import { expect, test } from '@playwright/test';
 
 const roundCurrency = (value: number) => Math.round(value * 100) / 100;
 
-test.describe('Carts API', () => {
-  test('creates a cart and returns catalog products with calculated totals', async ({ request }) => {
+test.describe('API de carrinhos', () => {
+  test('cria um carrinho e retorna produtos do catálogo com totais calculados', async ({ request }) => {
     const requestedProducts = [
       { id: 1, quantity: 2 },
       { id: 2, quantity: 1 },
@@ -45,7 +45,7 @@ test.describe('Carts API', () => {
     expect(typeof cart.discountedTotal).toBe('number');
   });
 
-  test('documents that newly added products are not available to cart creation', async ({ request }) => {
+  test('registra que produtos recém-criados não ficam disponíveis para o carrinho', async ({ request }) => {
     const createdProducts = [];
     for (const title of [`QA cart item A ${randomUUID()}`, `QA cart item B ${randomUUID()}`]) {
       const response = await request.post('/products/add', { data: { title, price: 12.5 } });
@@ -69,7 +69,7 @@ test.describe('Carts API', () => {
     expect(cart.totalQuantity).toBe(0);
   });
 
-  test('retrieves a seeded cart and validates product and price fields', async ({ request }) => {
+  test('consulta um carrinho predefinido e valida os campos de produto e preço', async ({ request }) => {
     const response = await request.get('/carts/1');
 
     expect(response.status()).toBe(200);
@@ -98,28 +98,28 @@ test.describe('Carts API', () => {
     );
   });
 
-  test('returns 404 for a cart that does not exist', async ({ request }) => {
+  test('retorna 404 para um carrinho inexistente', async ({ request }) => {
     const response = await request.get('/carts/999999');
 
     expect(response.status()).toBe(404);
     expect(typeof (await response.json()).message).toBe('string');
   });
 
-  test('returns 404 when the cart ID is not numeric', async ({ request }) => {
+  test('retorna 404 quando o ID do carrinho não é numérico', async ({ request }) => {
     const response = await request.get('/carts/not-a-number');
 
     expect(response.status()).toBe(404);
     expect(typeof (await response.json()).message).toBe('string');
   });
 
-  test('rejects a cart payload without required data', async ({ request }) => {
+  test('rejeita um carrinho sem os dados obrigatórios', async ({ request }) => {
     const response = await request.post('/carts/add', { data: {} });
 
     expect(response.status()).toBe(400);
     expect((await response.text()).length).toBeGreaterThan(0);
   });
 
-  test('deletes a cart and reports the simulated deletion state', async ({ request }) => {
+  test('exclui um carrinho e informa o estado simulado da exclusão', async ({ request }) => {
     const response = await request.delete('/carts/1');
 
     expect(response.status()).toBe(200);

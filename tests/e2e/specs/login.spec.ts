@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 
 test.describe('Login', () => {
-  test('authenticates the standard user and redirects to inventory', async ({ page }) => {
+  test('autentica o usuário padrão e redireciona para o estoque', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.open();
     await loginPage.login('standard_user', 'secret_sauce');
@@ -11,7 +11,7 @@ test.describe('Login', () => {
     await expect(page.getByTestId('title')).toHaveText('Products');
   });
 
-  test('shows an error for a locked user', async ({ page }) => {
+  test('exibe um erro para um usuário bloqueado', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.open();
     await loginPage.login('locked_out_user', 'secret_sauce');
@@ -21,7 +21,7 @@ test.describe('Login', () => {
     );
   });
 
-  test('shows an error for an unknown user', async ({ page }) => {
+  test('exibe um erro para um usuário desconhecido', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.open();
     await loginPage.login('unknown_user', 'secret_sauce');
@@ -31,7 +31,7 @@ test.describe('Login', () => {
     );
   });
 
-  test('shows an error for an incorrect password', async ({ page }) => {
+  test('exibe um erro quando a senha está incorreta', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.open();
     await loginPage.login('standard_user', 'incorrect_password');
@@ -41,7 +41,7 @@ test.describe('Login', () => {
     );
   });
 
-  test('requires a username when both fields are empty', async ({ page }) => {
+  test('solicita o nome de usuário quando os dois campos estão vazios', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.open();
     await loginPage.login('', '');

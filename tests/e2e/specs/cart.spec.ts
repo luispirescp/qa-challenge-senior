@@ -2,8 +2,8 @@ import { expect, test } from '../fixtures/authenticated.fixture';
 import { CartPage } from '../pages/CartPage';
 import { InventoryPage } from '../pages/InventoryPage';
 
-test.describe('Cart', () => {
-  test('shows selected products, quantities, and prices', async ({ authenticatedPage }) => {
+test.describe('Carrinho', () => {
+  test('exibe os produtos selecionados, suas quantidades e preços', async ({ authenticatedPage }) => {
     const inventory = new InventoryPage(authenticatedPage);
     await inventory.addProduct('sauce-labs-backpack');
     await inventory.addProduct('sauce-labs-bike-light');
@@ -17,7 +17,7 @@ test.describe('Cart', () => {
     await expect(cart.productByName('Sauce Labs Backpack').locator('.cart_quantity')).toHaveText('1');
   });
 
-  test('removes products, shows an empty cart, and continues shopping', async ({ authenticatedPage }) => {
+  test('remove produtos, exibe o carrinho vazio e permite continuar comprando', async ({ authenticatedPage }) => {
     const inventory = new InventoryPage(authenticatedPage);
     await inventory.addProduct('sauce-labs-backpack');
     await inventory.openCart();
