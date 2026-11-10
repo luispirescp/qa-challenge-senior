@@ -165,17 +165,21 @@ Não existe teste que prove a ausência absoluta de defeitos. A evidência de te
 
 ## Questão 20 — Considerando dois cenários não ideais, qual é o pior e por quê? Como você atuaria para resolver?
 
-O texto recebido menciona dois cenários, mas não inclui a descrição completa de ambos. Por isso, não é possível compará-los com segurança nem afirmar categoricamente qual é o pior.
+Considerando dois cenários comuns:
 
-Se um dos cenários for o de as entregas de desenvolvimento chegarem ao QA apenas no fim da sprint, isso tende a criar um gargalo, reduzir o tempo para feedback e aumentar o risco de defeitos descobertos tarde. Para atuar, eu buscaria:
+1. **Capacidade de QA insuficiente:** há poucas pessoas de QA para o volume de trabalho, mas as entregas de desenvolvimento acontecem de forma contínua ao longo da sprint.
+2. **Entrega concentrada no fim da sprint:** a equipe de QA tem capacidade suficiente, mas o desenvolvimento só disponibiliza as funcionalidades para teste perto do encerramento da sprint.
 
-- Entender as causas e mapear o fluxo com o time.
-- Negociar entregas menores e frequentes, com critérios de pronto compartilhados.
-- Incluir verificações e colaboração entre QA e desenvolvimento durante a sprint.
-- Usar automação e ambientes adequados para feedback contínuo, quando fizer sentido.
-- Levar dados sobre bloqueios, retrabalho e defeitos tardios à retrospectiva e acompanhar melhorias.
+Na minha avaliação, o **segundo cenário é o mais prejudicial**. Mesmo com capacidade de QA adequada, concentrar as entregas no fim reduz o tempo para testar, corrigir e repetir os testes. Isso cria um gargalo, atrasa o feedback e aumenta o risco de defeitos escaparem ou de a sprint terminar sem que a funcionalidade esteja validada. No primeiro cenário também há risco, mas a equipe pode priorizar por impacto e probabilidade, negociar escopo e buscar apoio do time enquanto trabalha em melhorias de capacidade.
 
-Para fechar a comparação solicitada, é necessário conferir no enunciado original a descrição dos dois cenários.
+Eu atuaria junto ao time para:
+
+- Entender as causas das entregas tardias e visualizar onde o fluxo está sendo bloqueado.
+- Dividir o trabalho em incrementos menores e disponibilizá-los para validação assim que estiverem prontos.
+- Definir critérios de pronto compartilhados, incluindo verificações de qualidade e colaboração entre desenvolvimento e QA.
+- Envolver QA desde o refinamento, esclarecendo riscos e critérios de aceite antes da implementação.
+- Automatizar verificações repetitivas e manter um ambiente de teste disponível, quando apropriado.
+- Acompanhar na retrospectiva indicadores como tempo de espera por testes, retrabalho e defeitos encontrados tarde, e avaliar se as mudanças melhoraram o fluxo.
 
 ## Questão 21 — Diferencie teste estático e dinâmico.
 
@@ -184,10 +188,10 @@ Para fechar a comparação solicitada, é necessário conferir no enunciado orig
 
 ## Questão 22 — Diferencie teste alfa e beta.
 
-- **Alfa:** avaliação realizada antes da disponibilização ampla, normalmente em ambiente controlado e com participação de pessoas internas ou de um grupo selecionado.
-- **Beta:** avaliação por pessoas usuárias externas ou representativas, em condições próximas às de uso real, antes ou durante uma liberação limitada.
+- **Teste alfa:** realizado antes da versão ser disponibilizada ao público, em ambiente controlado e com participação da equipe interna, como QA e desenvolvimento, ou de um grupo selecionado. Seu objetivo é identificar problemas e validar o produto antes de expô-lo a usuários externos.
+- **Teste beta:** realizado por um grupo de usuários ou clientes externos, em condições próximas às de uso real, antes do lançamento amplo ou durante uma liberação limitada. Seu objetivo é obter feedback e identificar problemas que podem não surgir no ambiente controlado de alfa.
 
-Os termos e a sequência podem variar conforme o processo de lançamento da organização.
+Em geral, o teste alfa acontece antes do beta, embora os detalhes possam variar conforme o processo de lançamento.
 
 ## Questão 23 — O que é Splunk? Pode ser usado por QAs? Cite exemplos práticos.
 
@@ -209,19 +213,13 @@ Splunk é uma plataforma usada para pesquisar, analisar e visualizar logs e outr
 
 ## Questão 25 — Dê um exemplo de comando para executar um teste de desempenho pela linha de comando.
 
-Exemplo com JMeter em modo não gráfico:
+Um exemplo é o **ApacheBench (`ab`)**, ferramenta de linha de comando para medir o desempenho de um servidor HTTP:
 
 ```bash
-jmeter -n -t script_performance.jmx -l resultados.jtl -e -o relatorio_html
+ab -n 100 -c 5 http://localhost:8080/
 ```
 
-Exemplo com k6:
-
-```bash
-k6 run --vus 100 --duration 5m script.js
-```
-
-Os valores de carga devem ser definidos conforme os requisitos, a capacidade do ambiente e a autorização do responsável pelo sistema.
+Nesse exemplo, `-n 100` define o total de requisições e `-c 5` limita a cinco as requisições simultâneas. O endereço é local para ilustrar o uso; em um teste real, escolha uma carga compatível com o ambiente e execute somente contra sistemas sob sua responsabilidade ou com autorização explícita. O ApacheBench é adequado para medições simples de um endpoint, mas não representa por si só fluxos completos de usuários.
 
 ## Questão 26 — Entre um programa de TV com vários patrocinadores e uma indústria automobilística, qual cliente necessita mais de testes de desempenho e por quê?
 
