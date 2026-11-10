@@ -30,4 +30,8 @@ Abra `index.html` no diretório de relatório HTML para consultar os gráficos e
 - **P90, P95 e P99:** limites abaixo dos quais se encontram 90%, 95% e 99% das respostas. P95/P99 são úteis para identificar degradação percebida por uma parcela dos usuários.
 - **Taxa de erros:** proporção de amostras com falha HTTP, assertion ou erro de transporte. Correlacione com latência e volume antes de atribuir causa.
 
-Não há resultados de carga publicados: JMeter não está instalado neste ambiente e nenhum teste de performance foi executado. O site público é externo e não há autorização ou capacidade contratual para submeter carga; execute apenas com limites aprovados pelo responsável pelo alvo.
+## Execução registrada
+
+Há uma execução local de 5 minutos, realizada em 09/11/2026, cujos arquivos estão em `performance/reports/` e `jmeter.log`. O relatório HTML e o arquivo JTL são ignorados pelo Git, portanto não acompanham o repositório. O resumo agregado gerado pelo JMeter registrou 7.414 amostras, 0% de erros, tempo médio de aproximadamente 387 ms e mediana de 358 ms.
+
+Esse resultado deve ser tratado como observação daquela execução, não como garantia de desempenho ou critério de aceite: o alvo é um site público, e não há autorização ou capacidade contratual documentada para submeter carga. Além disso, os contadores dos dois cenários no relatório ficaram praticamente iguais (1.238 buscas e 1.236 compras), embora o plano esteja configurado para 80/20. Portanto, essa execução não comprova a distribuição pretendida; valide o comportamento do controlador e a proporção em nova execução apenas em ambiente autorizado.

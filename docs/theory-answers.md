@@ -140,8 +140,8 @@ Métricas devem apoiar decisões, não ser tratadas isoladamente como medida de 
 
 | Abordagem | Vantagens | Exemplos de aplicação | Benefícios |
 |---|---|---|---|
-| Manual | Flexibilidade, exploração e avaliação humana do contexto | Testes exploratórios, usabilidade e avaliação inicial de uma funcionalidade | Ajuda a encontrar comportamentos inesperados e problemas de experiência |
-| Automatizada | Repetibilidade, velocidade e execução frequente | Regressão, smoke tests e verificações de API | Fornece feedback consistente e pode ser integrada ao CI/CD |
+| Manual | Flexibilidade para explorar o sistema e avaliar a experiência do ponto de vista da pessoa usuária. | Testes exploratórios, testes de usabilidade e avaliação inicial de uma funcionalidade. | Ajuda a identificar problemas inesperados e aspectos da experiência que são difíceis de verificar automaticamente. |
+| Automatizada | Execução rápida, repetível e consistente. | Testes de regressão, smoke tests e verificações de API. | Acelera o feedback e permite executar verificações com frequência, inclusive em pipelines de CI/CD. |
 
 As abordagens são complementares. A automação é mais adequada para verificações repetíveis e estáveis; testes manuais são valiosos quando exploração, julgamento e observação humana são importantes.
 

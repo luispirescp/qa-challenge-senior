@@ -101,7 +101,7 @@ A checagem DNS/MX é opcional; erros temporários de rede são registrados como 
 
 ## Performance
 
-O plano de mistura 80/20, os dados CSV, os comandos non-GUI e a interpretação dos indicadores estão em [docs/performance-testing.md](docs/performance-testing.md). Nenhum teste de carga foi executado e nenhum resultado foi inventado. Como o alvo é um site público, execute o plano somente com autorização explícita e limites de carga aprovados pelo responsável.
+O plano de mistura 80/20, os dados CSV, os comandos non-GUI e a interpretação dos indicadores estão em [docs/performance-testing.md](docs/performance-testing.md). Há uma execução local registrada em `performance/reports/`, mas esses resultados são ignorados pelo Git; consulte a documentação antes de citá-los. A execução não substitui autorização nem critérios de carga aprovados pelo responsável pelo alvo.
 
 ## BDD e requisitos pendentes
 
