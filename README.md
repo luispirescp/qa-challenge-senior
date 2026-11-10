@@ -107,7 +107,7 @@ O plano de mistura 80/20, os dados CSV, os comandos non-GUI e a interpretação 
 
 Os cenários PayPal estão em `bdd-scenarios/paypal-payment.feature`; a estratégia de priorização está em `bdd-scenarios/priorizacao-ci-cd.md`. São especificações, não automação executável: não há aplicação PayPal ou integração disponibilizada.
 
-O documento original do desafio, incluindo a US-042 e seus critérios de aceite, não foi encontrado no repositório. Os cenários foram derivados apenas dos requisitos fornecidos na solicitação e devem ser revisados quando a US-042 estiver disponível. A Parte 1 em `docs/theory-answers.md` também permanece pendente porque o conteúdo teórico original não foi fornecido.
+O documento original do desafio, incluindo a US-042 e seus critérios de aceite, não foi encontrado no repositório. Os cenários foram derivados apenas dos requisitos fornecidos na solicitação e devem ser revisados quando a US-042 estiver disponível. As respostas da Parte 1 estão em `docs/theory-answers.md`; algumas questões foram fornecidas de forma resumida e a questão 20 não inclui a descrição dos dois cenários, portanto esses trechos devem ser conferidos com o enunciado original antes da entrega.
 
 ## Relatórios e artefatos
 
